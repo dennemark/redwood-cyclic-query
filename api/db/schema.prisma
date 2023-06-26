@@ -16,3 +16,11 @@ model UserExample {
   email String  @unique
   name  String?
 }
+
+model Item {
+  id      Int     @id @default(autoincrement())
+  public  Boolean @default(false)
+  itemId  Int?    @unique
+  item    Item?   @relation("RelatedItem", fields: [itemId], references: [id])
+  related Item?   @relation("RelatedItem")
+}
