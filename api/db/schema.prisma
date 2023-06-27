@@ -23,4 +23,12 @@ model Item {
   itemId  Int?    @unique
   item    Item?   @relation("RelatedItem", fields: [itemId], references: [id])
   related Item?   @relation("RelatedItem")
+  groupId Int?
+  group   Group?  @relation(fields: [groupId], references: [id])
+}
+
+model Group {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  items Item[]
 }
